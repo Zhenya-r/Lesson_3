@@ -1,0 +1,25 @@
+/*Обнуляющий стиль*/
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+li {
+	list-style: none;
+}
+
+a,
+a:visited {
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+img {
+	vertical-align: top;
+}
+/*---------------------------------------------------*/

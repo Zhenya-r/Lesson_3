@@ -1,0 +1,44 @@
+@import "null.css";
+
+.menu-item > ul > li > a {
+	color: rgb(17, 114, 57);
+}
+
+.img-about-selector + p {
+	color: rgb(37, 190, 201);
+}
+
+.example-first-result span {
+	color: DodgerBlue;
+}
+
+.classy {
+	color: DodgerBlue;
+}
+
+#identified {
+	color: DodgerBlue;
+}
+
+[class*="example-"] h3 {
+	color: blueviolet;
+}
+
+.example-fourth-result div p {
+	color: DodgerBlue;
+}
+
+.example-fourth-result p {
+	color: green;
+}
+
+.example-fifth-result .section p {
+	color: pink;
+}
+.example-fifth-result .section > p {
+	color: green;
+}
+
+.daughter.example {
+	color: red;
+}

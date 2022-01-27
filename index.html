@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Lesson 3</title>
+</head>
+
+<body>
+	<header class="header">
+		<h1>Селекторы CSS</h1>
+		<p>В <a href="https://developer.mozilla.org/ru/docs/Glossary/CSS" target="_blank">CSS</a>-селекторы используются для стилизации HTML элементов на веб-странице. Существует широкий выбор CSS-селекторов, позволяющий максимально точно отбирать элементы для стилизации. В этой статье и её подстатьях мы в мельчайших подробностях рассмотрим разные их типы и увидим, как они работают.</p>
+		<nav class="menu-body">
+			<ul class="menu-list">
+				<li class="menu-item"><a href="#about-selector" class="menu-link">Что такое селекторы?</a></li>
+				<li class="menu-item"><a href="#several-selectors" class="menu-link">Несколько селекторов</a></li>
+				<li class="menu-item"><a href="#type-selectors" class="menu-link">Типы селекторов</a>
+					<ul class="sub-menu-list">
+						<li class="sub-menu-item"><a href="#type-selector-first" class="menu-link">Селекторы тегов, классов и идентификаторов</a></li>
+						<li class="sub-menu-item"><a href="#type-selector-second" class="menu-link">Селекторы атрибутов</a></li>
+						<li class="sub-menu-item"><a href="#type-selector-third" class="menu-link">Псевдоклассы, псевдоэлементы</a></li>
+						<li class="sub-menu-item"><a href="#type-selector-fourth" class="menu-link">Комбинаторы</a></li>
+					</ul>
+				</li>
+				<li class="menu-item"><a href="#reference-about-selectors" class="menu-link">Справка о селекторах</a></li>
+				<li class="menu-item"><a href="#example" class="menu-link">Примеры</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="main">
+		<div id="about-selector">
+			<h2>Что такое селекторы?</h2>
+			<p>Вы уже встречались с селекторами. Это выражения, которые говорят браузеру, к какому элементу HTML нужно применить те или иные свойства CSS, определённые внутри блока объявления стиля.</p>
+			<img class="img-about-selector" src="img/about-selector.jpg" alt="what is this selector">
+			<p>Ранее вы встречали несколько разных селекторов и узнали, что существуют селекторы, которые по-разному относятся к документу, — например используя элемент <code>h1</code> или класс <code>.special.</code> </p>
+			<p>В CSS селекторы определяются в спецификации CSS-селекторов; как и другие части CSS, нужно поддерживать их работу в браузерах. Большинство селекторов, которые вы встретите, определены в <a href="https://www.w3.org/TR/selectors-3/" target="_blank"> Спецификации селекторов 3 уровня</a>, где вы сможете найти всю информацию о поддержке селекторов в браузерах.</p>
+		</div>
+
+		<div id="several-selectors">
+			<h2>Несколько селекторов</h2>
+			<p>Несколько селекторов, использующих одни и те же таблицы стилей, можно объединить в лист селекторов: правило будет добавлено к каждому селектору. К примеру, у меня есть одинаковые правила для заголовка <code>h1</code> и класса <code>.special.</code>; я могу написать их так:</p>
+			<pre>
+h1 {
+	color: blue;
+}
+
+.special {
+	color: blue;
+}
+			</pre>
+			<p>А могу написать короче — просто отделив селекторы запятыми:</p>
+			<pre>
+h1, .special {
+	color: blue;
+} 
+			</pre>
+			<p>Пробел можно вставлять до или после запятой. Ещё удобнее писать каждый селектор с новой строки:</p>
+			<pre>
+h1,
+.special {
+	color: blue;
+} 
+			</pre>
+			<p>При объединении селекторов таким образом, при условии если хоть один селектор будет недействительным, всё правило будет пропущено.</p>
+			<p>В примере ниже правило для селектора класса не будет работать, в то время как <code>h1</code> будет стилизован.</p>
+			<pre>
+h1 {
+	color: blue;
+}
+	
+..special {
+	color: blue;
+} 
+			</pre>
+			<p>Но если мы объединим селекторы, правило не применится ни к <code>h1</code>, ни к классу: оно считается недействительным.</p>
+			<pre>
+h1, ..special {
+	color: blue;
+} 
+			</pre>
+		</div>
+
+		<div id="type-selectors">
+			<h2>Типы селекторов</h2>
+			<p>Понимание того, какой именно селектор вам нужен, очень помогает подобрать подходящий элемент. Сейчас мы разберём разные виды селекторов.</p>
+			<h3 id="type-selector-first">Селекторы тегов, классов и идентификаторов</h3>
+			<p>К этой группе относятся селекторы HTML-элементов, таких как <code>&lt;h1&gt;</code>.</p>
+			<code>h1 { }</code>
+			<p>К группе относятся и селекторы классов:</p>
+			<code>.box { }</code>
+			<p>или селекторы идентификаторов (ID):</p>
+			<code>#unique { }</code>
+			<h3 id="type-selector-second">Селекторы атрибутов</h3>
+			<p>Эта группа селекторов позволяет выбирать селекторы, основываясь на наличии у них конкретного атрибута элемента:</p>
+			<code>a[title] { }</code>
+			<p>или основываясь на значении атрибута:</p>
+			<code>a[href="https://example.com"] { }</code>
+			<h3 id="type-selector-third">Псевдоклассы, псевдоэлементы</h3>
+			<p>К этой группе относятся псевдоклассы, которые стилизуют определённое состояние элемента. Псевдокласс <code>:hover</code>, например, применяет правило, только если на элемент наведён курсор мыши</p>
+			<code>a:hover { }</code>
+			<p>К группе ещё относятся псевдоэлементы, которые выбирают определённую часть элемента (вместо целого элемента). Например, <code>::first-line</code> всегда выбирает первую строку внутри элемента (абзаца <code>&lt;p&gt;</code> в нашем случае), действуя, как если бы тег <code>&lt;span&gt;</code> оборачивал первую строку, а затем был стилизован.</p>
+			<code>p::first-line { }</code>
+			<h3 id="type-selector-fourth">Комбинаторы</h3>
+			<p>И последняя группа селекторов: она позволяет объединять селекторы, чтобы было легче находить конкретные элементы внутри документа. В следующем примере мы отыскали дочерний элемент <code>&lt;article&gt;</code> с помощью комбинатора дочерних элементов (<code>&gt;</code>):</p>
+			<code>article > p { }</code>
+		</div>
+
+		<div id="reference-about-selectors">
+			<h2>Справка о селекторах</h2>
+			<p>В таблице ниже — доступные сейчас селекторы, а также ссылки к страницам, где рассказывается, как использовать каждый из них. Я также добавил ссылки на страницы MDN для каждого селектора, чтобы вы могли проверить, поддерживаются ли они браузерами.</p>
+			<img src="img/reference-about-selectors.jpg" alt="reference-about-selectors">
+		</div>
+
+		<div id="example">
+			<h2>Примеры</h2>
+			<div class="example-first">
+				<h3>Селектор по типу</h3>
+				<code>element { style properties }</code>
+				<h4>CSS</h4>
+				<pre>
+span {
+	color: DodgerBlue;
+}
+				</pre>
+				<h4>HTML</h4>
+				<pre>
+
+&lt;span&gt;Здесь тег span с каким-то текстом.&lt;/span&gt;
+&lt;p&gt;Здесь тег p с каким-то текстом.&lt;/p&gt;
+	
+				</pre>
+				<h4>Результат</h4>
+				<div class="example-first-result">
+					<span>Здесь тег span с каким-то текстом.</span>
+					<p>Здесь тег p с каким-то текстом.</p>
+				</div>
+			</div>
+			<div class="example-second">
+				<h3>Селекторы по классу</h3>
+				<code>.classname { style properties }</code>
+				<h4>CSS</h4>
+				<pre>
+.classy {
+	color: DodgerBlue;
+ }
+				</pre>
+				<h4>HTML</h4>
+				<pre>
+&lt;p class="classy"&gt;Здесь p с каким-то текстом.&lt;/p&gt;
+&lt;p&gt; А тут другой p.&lt;p&gt;
+				</pre>
+				<h4>Результат</h4>
+				<div class="example-second-result">
+					<p class="classy">Здесь p с каким-то текстом.</p>
+					<p>А тут другой p.</p>
+				</div>
+			</div>
+			<div class="example-third">
+				<h3>Селекторы по ID</h3>
+				<code>#id_value { style properties }</code>
+				<h4>CSS</h4>
+				<pre>
+#identified {
+	color: DodgerBlue;
+}
+				</pre>
+				<h4>HTML</h4>
+				<pre>
+&lt;p  id="identified"&gt;Здесь p с каким-то текстом.&lt;/p&gt;
+&lt;p&gt; А тут другой p.&lt;p&gt;
+				</pre>
+				<h4>Результат</h4>
+				<div class="example-third-result">
+					<p id="identified">Здесь p с каким-то текстом.</p>
+					<p>А тут другой p.</p>
+				</div>
+			</div>
+			<div class="example-fourth">
+				<h3>Селектор потомков</h3>
+				<code>selector1 selector2 {стили }</code>
+				<h4>CSS</h4>
+				<pre>
+p {
+	color: green; 
+}
+div p {
+	color: DodgerBlue;
+}
+				</pre>
+				<h4>HTML</h4>
+				<pre>
+&lt;div&gt;
+	&lt;p&gt; Я p внутри div &lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt; Я p снаружи div &lt;/p&gt;
+				</pre>
+				<h4>Результат</h4>
+				<div class="example-fourth-result">
+					<div>
+						<p>Я p внутри div</p>
+					</div>
+					<p>Я p снаружи div</p>
+				</div>
+			</div>
+		</div>
+		<div class="example-fifth">
+			<h3 class="daughter example">Селектор дочерних элементов</h3>
+			<code>selector1 > selector2 { style properties }</code>
+			<h4>CSS</h4>
+			<pre>
+.section p {
+	color: pink;
+}
+.section > p {
+	color: green;
+}
+			</pre>
+			<h4>HTML</h4>
+			<pre>
+&lt;div class="section"&gt;
+	&lt;p&gt;Первый уровень.&lt;/p&gt;
+	&lt;div class="section__text"&gt;
+		&lt;p&gt;Второй уровень.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;Третий уровень.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;p&gt;Первый уровень.&lt;/p&gt;
+&lt;/div&gt;
+			</pre>
+			<h4>Результат</h4>
+			<div class="example-fifth-result">
+				<div class="section">
+					<p>Первый уровень.</p>
+					<div class="section__text">
+						<p>Второй уровень.</p>
+						<div>
+							<p>Третий уровень.</p>
+						</div>
+					</div>
+					<p>Первый уровень.</p>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<a href="#top">Вернуться на верх</a>
+	</footer>
+
+</body>
+
+</html>
