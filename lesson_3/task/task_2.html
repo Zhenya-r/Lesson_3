@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>З клавіатури вводиться ціна товару і кількість грошей.
+      Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.</p>
+   <script>
+      const productPrice = parseFloat(prompt("Введіть ціну товара"));
+      const cash = parseFloat(prompt("Введіть кількість грошей"));
+      const ticketPrice = 4;
+
+      switch (true) {
+         case cash < productPrice:
+            document.write(`
+            У Вас не вистачає ${productPrice - cash}у.о на покупку.
+            `)
+            break;
+         case (cash >= productPrice) && (cash < productPrice + ticketPrice):
+            document.write(`
+               У Вас вистачає грошей на покупку.
+            `)
+            break;
+
+         default:
+            document.write(`
+               У Вас вистачає грошей на покупку, а також ви можете придбати ${Math.floor((cash - productPrice) / ticketPrice)} лотерейних білетика на кошти що залишились.
+            `)
+            break;
+      }
+   </script>
+</body>
+
+</html>
