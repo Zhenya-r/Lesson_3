@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.</p>
+   <script>
+      const category = (prompt('Введіть категорію (A, B, C)').toUpperCase())
+      console.log(category);
+      switch (category) {
+         case 'A':
+            document.write(`мотоцикл`)
+            break;
+
+         case 'B':
+            document.write(`легковий автомобіль`)
+            break;
+
+         case 'C':
+            document.write(`вантажний автомобіль`)
+            break;
+
+         default:
+            document.write(`спробуй ще`)
+            break;
+      }
+   </script>
+</body>
+
+</html>
